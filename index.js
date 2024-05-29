@@ -5,7 +5,8 @@ function otrosJS(otros) {
 	document.head.prepend(script);
 }
 // otrosJS('dark.js');
-otrosJS('etiquetashtml.js');
+otrosJS('etiquetasdom.js');
+otrosJS('agregar.js');
 
 let acumulandoConocmiento = [];
 let seguir = true
@@ -36,7 +37,7 @@ let agrupandoDefinicion = [Definicion1, Definicion2, Definicion3, Definicion4, D
 let creandoTitulo = document.createElement('h1')
 creandoTitulo.classList.add('titulo1')
 document.body.appendChild(creandoTitulo)
-creandoTitulo.textContent = 'Adquiriendo conocimientos'
+creandoTitulo.textContent = 'Adquiriendo Conocimientos'
 
 //--🔎Creando un buscador🔎--
 let divBuscador = document.createElement('div')

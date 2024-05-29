@@ -46,6 +46,7 @@ botonInput.addEventListener('click', () => {
 	});
 	if (!coincidencia) {
 		alert('No hay resultados que coinciden con tu busqueda!')
+
 	}
 });
 //---Si es con enter---
