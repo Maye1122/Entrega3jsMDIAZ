@@ -1,12 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* .montserrat{
 	font-family: "Montserrat", sans-serif;
 	font-optical-sizing: auto;
 	font-weight: <weight>;
 	font-style: normal;
 } */
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
+:root {
+	--titulo-Encabezado: #2364AA;
+	--subtitulo: hwb(200 24% 50%);
+	--fondo-div: #73BFB8;
+	--secciones-import: #FEC601;
+	--interactivo: #EA7317;
+}
 
 * {
 	margin: 0;
@@ -14,24 +20,22 @@
 	box-sizing: border-box;
 	font-family: "Montserrat",
 		sans-serif;
+	background-color: rgba(214, 225, 236, 0.1);
 
-	/* background-color: rgb(225, 236, 236); */
 }
 
 body {
-	/* background-color: aliceblue; */
 	height: 100vh;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: repeat(2, 1fr);
-	/* border-color: red; */
 
 }
 
 .infoContenedor {
 	display: block;
 	border-radius: .5rem;
-	background-color: rgba(237, 159, 159, 0.8);
+	background-color: var(--fondo-div);
 	text-align: center;
 	width: 45vw;
 	height: 16rem;
@@ -40,6 +44,10 @@ body {
 	padding: 1%;
 	align-items: flex-start;
 	justify-content: center;
+}
+
+.infoContenedor:hover {
+	background-color: hsl(174, 37%, 70%);
 }
 
 
@@ -57,14 +65,27 @@ body {
 .esunInput {
 	align-items: center;
 	width: 75%;
-	/* background-color: rgb(170, 120, 220); */
 	height: 100%;
 	border-radius: .5rem;
 }
 
-.botonInput {
-	/* background-color: rgb(193, 158, 229); */
-	/* border-color: rgb(223, 96, 210); */
+.esunInput:hover {
+	background-color: hsl(26, 83%, 90%);
+}
+
+.botonInput,
+.carrito,
+.boton,
+.botonEdad,
+.botonNombre,
+.botonLimpiar {
+	background-color: var(--interactivo);
+}
+
+.botonInput,
+.botonEdad,
+.botonLimpiar,
+.botonNombre {
 	border-radius: .5rem;
 	width: 10%;
 	font-size: 1rem;
@@ -72,55 +93,69 @@ body {
 	height: 100%;
 }
 
+.botonInput:hover,
+.carrito:hover,
+.boton:hover,
+.botonEdad:hover,
+.botonLimpiar:hover,
+.botonNombre:hover {
+	background-color: hsl(26, 83%, 60%);
+	color: var(--titulo-Encabezado);
+	font-weight: 600;
+}
+
 .titulo1 {
+	color: var(--titulo-Encabezado);
+	font-family: "Montserrat",
+		sans-serif;
+	font-size: 3rem;
 	grid-column: 1/-1;
 	margin: 0.5rem;
 	padding: 2%;
-	/* color: blueviolet; */
 	text-align: center;
-	/* background-color: aqua; */
+
 }
 
 .titulo2 {
+	color: var(--titulo-Encabezado);
 	height: 10%;
 	font-size: 2rem;
 	background-color: transparent;
 }
 
-button.dark,
-button.light {
-	/* background-color: aliceblue; */
-	width: 3rem;
-	border-radius: 0.5rem;
-	/* background-color: antiquewhite; */
-}
+/* button.dark,
+button.light { */
+/* background-color: aliceblue; */
+/* width: 3rem;
+	border-radius: 0.5rem; */
+/* background-color: antiquewhite; */
+/* } */
 
 .parrafo {
-	background-color: transparent;
+	color: var(--subtitulo);
 	padding-top: 2%;
 	margin-top: 1rem;
 	text-align: left;
 	height: 70%;
 	font-size: 1.1rem;
+	font-weight: 400;
 }
 
 .boton {
-	/* background-color: rgb(214, 187, 240); */
-	/* border-color: rgb(236, 235, 244); */
+
 	height: 2rem;
 	border-radius: .5rem;
 	width: 100%;
 	font-size: 1rem;
 	margin-bottom: 3rem;
-	/* color: white; */
 }
 
-.dark-mode {
+/* .dark-mode {
 	background-color: rgb(1, 1, 73);
-	color: rgb(249, 246, 246);
-	/* display: none; */
+	color: rgb(249, 246, 246); */
+/* display: none; */
 
-}
+/* } */
 
 /* .dark-mode .dark {
 	display: none;
@@ -132,14 +167,39 @@ button.light {
 
 }
 
-.lista {
+#carrito-info {
+	color: var(--titulo-Encabezado);
+	font-weight: 500;
+	font-size: 1.5rem;
 	display: none;
-	list-style-type: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: var(--secciones-import);
+	border: 1px solid var(--fondo-div);
+	padding: 1rem;
+	border-radius: 0.25rem;
+	width: 300px;
+	z-index: 1000;
+	box-shadow: 0 0 10px var(--subtitulo);
+
 }
 
-.visible {
-	display: block;
+.localstorage {
+	display: flex;
+	justify-content: space-around;
+	color: var(--titulo-Encabezado);
+	font-size: 3rem;
+	grid-column: 1/-1;
+	padding: 1%;
+	text-align: center;
+}
 
+.botonEdad,
+.botonNombre,
+.botonLimpiar {
+	cursor: pointer;
 }
 
 @media (max-width:780px) {

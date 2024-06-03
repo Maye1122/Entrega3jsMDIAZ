@@ -3,46 +3,43 @@ let agregar = document.createElement('button')
 agregar.classList.add('carrito')
 divBuscador.appendChild(agregar)
 agregar.textContent = '🛒';
-let items = [];
+let botonAgregar = document.querySelectorAll('[id ^= "agregar-"]');
+let sumandoElementos = [];
+let carritoInfo = document.createElement('div');
+carritoInfo.id = 'carrito-info';
+//let carritoInfo = document.getElementById('carrito-info');
 
-//------------------------------------------
-document.querySelectorAll('.boton').forEach(botonTarjeta => {
-
-	botonTarjeta.addEventListener('click', () => {
-		let sumando = document.querySelectorAll('.titulo2');
-
-		sumando.forEach((sumando) => {
-			const texto = sumando.textContent;
-			//const texto = sumando.textContent;
-
-			items.push(texto)
-
-			// if (items.includes(texto)) {
-			// 	items.push(texto)
-			// }
-		});
-		agregar.textContent = `${items.length}`
-
-		//console.log(items)
-
-	});
-
+botonAgregar.forEach((boton, index) => {
+	boton.dataset.nombre = agrupandoDefinicion[index].nombre;
 });
-//------------------🎇🎇🎇🎇🎇
 
-//--💥Creando un acumulador💥--
-let lista = document.createElement('ul')
-lista.classList.add('lista')
-divBuscador.appendChild(lista)
+botonAgregar.forEach(boton => {
+	boton.addEventListener('click', () => {
 
+		let nuevoTitulo = boton.dataset.nombre;
+		nuevoTitulo.textContent = boton.dataset.nombre;
+		alert('ingresaste: \n' + nuevoTitulo);
+		sumandoElementos.push(nuevoTitulo);
+		//carritoInfo.textContent = sumandoElementos.join(', ')
+		carritoInfo.innerHTML = `Elementos agregados:<br>  ${sumandoElementos.join('<br>')}`
+
+
+	})
+})
 agregar.addEventListener('click', () => {
-	//lista.innerHTML = '';
+	if (sumandoElementos.length > 0) {
+		carritoInfo.style.display = 'block';
 
-	items.forEach(item => {
-		const li = document.createElement('li')
-		li.textContent = item;
-		lista.appendChild(li)
-	});
-	lista.classList.toggle('visible')
-	console.log(agregar)
+
+	} else {
+		alert('No se han agregado elementos al carrito aún.');
+	}
+})
+document.body.appendChild(carritoInfo);
+// Obtener referencia al botón de cierre
+let cerrarAlert = document.querySelector('.cerrar');
+
+// Agregar evento clic al botón de cierre
+carritoInfo.addEventListener('click', () => {
+	carritoInfo.style.display = 'none';
 });

@@ -1,13 +1,3 @@
-//--➕Agregando otros .js➕--
-function otrosJS(otros) {
-	const script = document.createElement('script');
-	script.src = otros;
-	document.head.prepend(script);
-}
-// otrosJS('dark.js');
-otrosJS('etiquetasdom.js');
-otrosJS('agregar.js');
-
 let acumulandoConocmiento = [];
 let seguir = true
 

@@ -1,6 +1,6 @@
 //---Recorriendo el array---
+let contador = 1;
 agrupandoDefinicion.forEach(element => {
-
 	//--💳creé la tarjeta💳--
 	let tarjetaInfo = document.createElement('div')
 	let tarjeTitle = document.createElement('h2')
@@ -12,17 +12,18 @@ agrupandoDefinicion.forEach(element => {
 	tarjeTitle.classList.add('titulo2');
 	tarjeDescrip.classList.add('parrafo');
 	tarjeBoton.classList.add('boton');
+	tarjeBoton.id = 'agregar-' + contador;
+	contador++
 
 	//--🧨usando append para ver en HMTL🧨--
 	document.body.append(tarjetaInfo);
-	tarjetaInfo.append(tarjeTitle)
+	tarjetaInfo.append(tarjeTitle);
 	tarjetaInfo.append(tarjeDescrip);
-	tarjetaInfo.append(tarjeBoton)
+	tarjetaInfo.append(tarjeBoton);
 	//--🗒 Añadiendo la descripcion de cada elemento🗒--
 	tarjeTitle.textContent = `${element.id} ${element.nombre}`;
 	tarjeDescrip.textContent = `${element.definicion}`
 	tarjeBoton.textContent = 'Agregar';
-
 
 	//---Añadir un atributo data para buscar por nombre---
 	tarjetaInfo.dataset.nombre = element.nombre.toLowerCase();
@@ -41,11 +42,15 @@ botonInput.addEventListener('click', () => {
 			tarjet.style.display = 'block';
 			coincidencia = true;
 		} else {
+			//coincidencia
 			tarjet.style.display = 'none';
 		}
 	});
 	if (!coincidencia) {
 		alert('No hay resultados que coinciden con tu busqueda!')
+		tarjeta.forEach(tarjet => {
+			tarjet.style.display = 'block'
+		});
 
 	}
 });
