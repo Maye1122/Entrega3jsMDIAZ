@@ -55,7 +55,7 @@ if (!nombre || !edad) {
 	}
 
 } else {
-	alert(`Bienvenido de nuevo, ${nombre}. Tienes ${edad} años.`);
+	alert(`Hola ${nombre}!, tienes ${edad} años.`);
 }
 //--🦋Boton para limpiar el LS🦋--
 botonLimpiar.addEventListener('click', function () {
