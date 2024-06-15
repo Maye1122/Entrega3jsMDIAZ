@@ -104,17 +104,18 @@ body {
 	font-weight: 600;
 }
 
+.divApi,
 .titulo1 {
 	color: var(--titulo-Encabezado);
-	font-family: "Montserrat",
-		sans-serif;
-	font-size: 3rem;
+	font-family: "Montserrat", sans-serif;
+	font-size: 2.5rem;
 	grid-column: 1/-1;
 	margin: 0.5rem;
 	padding: 2%;
 	text-align: center;
-
 }
+
+/* .titulo1 {} */
 
 .titulo2 {
 	color: var(--titulo-Encabezado);
@@ -202,6 +203,27 @@ button.light { */
 	cursor: pointer;
 }
 
+/* Modificaciones para sweet */
+/* div del alert */
+.swal2-popup.swal2-modal.swal2-icon-success.swal2-show {
+	font-family: "Montserrat", sans-serif;
+}
+
+/* boton del alert */
+.swal2-confirm.swal2-styled {
+	background-color: var(--interactivo);
+}
+
+/* titulo del alert */
+#swal2-title {
+	font-family: "Montserrat",
+		sans-serif;
+	color: var(--titulo-Encabezado);
+}
+
+
+
+/* Mediaquerys */
 @media (max-width:780px) {
 	body {
 		grid-template-columns: repeat(1, 1fr);
@@ -209,5 +231,20 @@ button.light { */
 
 	.infoContenedor {
 		width: 90%;
+	}
+
+	.localstorage {
+		display: inline-grid;
+		justify-content: space-around;
+		align-items: flex-start;
+		justify-items: center;
+		width: 100%;
+
+	}
+
+	.localstorage>button {
+		width: 80vw;
+		height: 2rem;
+
 	}
 }

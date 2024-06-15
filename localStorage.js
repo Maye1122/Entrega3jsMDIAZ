@@ -30,46 +30,109 @@ function clearLocalStorage() {
 	localStorage.clear();
 }
 
-//--Almacenando los datos del local--
-let nombre = getDataFromLocalStorage('Nombre');
-let edad = getDataFromLocalStorage('Edad');
 
-if (!nombre || !edad) {
-	if (!nombre) {
-		nombre = prompt('Hola, Ingresa tu nombre');
-		while (nombre === null || nombre.trim() === '') {
+// --🍬🍬Cambiando funciones por libreria Sweet alert🍬🍬--
 
-			nombre = prompt('Ingresa tu Nombre');
+async function obtenerDatosLocalS() {
+	let nombre = await getDataFromLocalStorage('Nombre');
+	let edad = await getDataFromLocalStorage('Edad');
 
-		}
-		saveDataToLocalStorage('Nombre', nombre);
+	if (nombre && edad) {
+		Swal.fire({
+			title: `Hola ${nombre}!`,
+			text: `Tienes ${edad} años!`,
+			icon: 'success',
+			confirmButtonText: 'OK',
+		});
+	} else {
+		await obtenerNombre()
 	}
-	if (!edad) {
-		edad = parseInt(prompt('Ingresa tu edad'))
-		while (isNaN(edad)) {
-
-			edad = parseInt(prompt('Ingresa tu edad'));
-
-		}
-		saveDataToLocalStorage('Edad', edad);
-	}
-
-} else {
-	alert(`Hola ${nombre}!, tienes ${edad} años.`);
 }
+async function obtenerNombre() {
+	let nombre = null;
+	let edad = null;
+
+	while (!nombre) {
+		const resultado = await Swal.fire({
+			title: "Ingresa tu nombre",
+			input: "text",
+			inputValidator: (value) => {
+				if (!value) {
+					return "Ingresa tu nombre";
+				}
+			}
+		});
+		nombre = resultado.value;
+
+	}
+
+	while (!edad) {
+		const resultado = await Swal.fire({
+			title: 'Ingresa tu edad!',
+			input: 'number',
+			inputValidator: (value) => {
+				while (!value || isNaN(value)) {
+					return 'Ingresa tu edad';
+				}
+			}
+		});
+
+		edad = resultado.value
+	}
+	Swal.fire({
+		title: `Hola ${nombre}`,
+		text: `Tienes ${edad} años`,
+		icon: 'success',
+		confirmButtonText: 'OK',
+	});
+
+
+	saveDataToLocalStorage('Nombre', nombre);
+	saveDataToLocalStorage('Edad', edad);
+
+}
+
+
+// Llama a la función para ejecutar el código
+obtenerDatosLocalS();
+
+
+// -----------------------------------😋😋😋
 //--🦋Boton para limpiar el LS🦋--
 botonLimpiar.addEventListener('click', function () {
 	//Limpiar el almacenamiento local
-	clearLocalStorage();
-	alert('Se limpió el Local Storage');
-	location.reload();
-});
+	Swal.fire({
+		title: `Se limpió el Local Storage`,
+		confirmButtonText: 'OK',
+	}).then((resultado) => {
+		if (resultado.isConfirmed) {
 
+			clearLocalStorage();
+			location.reload();
+		}
+	});
+
+});
+//--🦋Boton para Ver almacenado en el LS🦋--
 botonNombre.addEventListener('click', () => {
 	let nombreAlmacenado = getDataFromLocalStorage('Nombre')
-	alert(`Hola ${nombreAlmacenado}, \n tu nombre quedo almacenado en el Local Storage`)
+	Swal.fire({
+		title: `Hola ${nombreAlmacenado}!`,
+		text: "Tu nombre quedó almacenado en el Local Storage",
+		confirmButtonText: 'OK',
+
+
+	});
+
 });
+//--🦋Boton para Ver almacenado en el LS🦋--
 botonEdad.addEventListener('click', () => {
 	let edadGuardada = getDataFromLocalStorage('Edad');
-	alert(`Tienes ${edadGuardada} años \n esta almacenado en el Local Storage`)
+	Swal.fire({
+		title: `Tienes ${edadGuardada} años!`,
+		text: "Tu edad quedó almacenada en el Local Storage",
+		confirmButtonText: 'OK',
+
+
+	});
 })

@@ -47,7 +47,13 @@ botonInput.addEventListener('click', () => {
 		}
 	});
 	if (!coincidencia) {
-		alert('No hay resultados que coinciden con tu busqueda!')
+
+		Swal.fire({
+			title: `No hay resultados que coinciden con tu busqueda!`,
+			icon: 'info',
+			confirmButtonText: 'OK',
+
+		});
 		tarjeta.forEach(tarjet => {
 			tarjet.style.display = 'block'
 		});

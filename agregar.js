@@ -6,6 +6,10 @@ agregar.textContent = '🛒';
 let botonAgregar = document.querySelectorAll('[id ^= "agregar-"]');
 let sumandoElementos = [];
 let carritoInfo = document.createElement('div');
+let equis = document.createElement('span');
+carritoInfo.append(equis)
+equis.className = 'equis';
+equis.innerHTML = 'x'
 carritoInfo.id = 'carrito-info';
 //let carritoInfo = document.getElementById('carrito-info');
 
@@ -18,9 +22,16 @@ botonAgregar.forEach(boton => {
 
 		let nuevoTitulo = boton.dataset.nombre;
 		nuevoTitulo.textContent = boton.dataset.nombre;
-		alert('ingresaste: \n' + nuevoTitulo);
+		Swal.fire({
+			title: `Ingresaste:`,
+			text: nuevoTitulo,
+			icon: 'success',
+			confirmButtonText: 'OK',
+		});
+
 		sumandoElementos.push(nuevoTitulo);
-		//carritoInfo.textContent = sumandoElementos.join(', ')
+
+
 		carritoInfo.innerHTML = `Elementos agregados:<br>  ${sumandoElementos.join('<br>')}`
 
 
@@ -32,7 +43,12 @@ agregar.addEventListener('click', () => {
 
 
 	} else {
-		alert('No se han agregado elementos al carrito aún.');
+		Swal.fire({
+			title: `No se han agregado elementos al carrito.`,
+			icon: 'warning',
+			confirmButtonText: 'OK',
+
+		});
 	}
 })
 document.body.appendChild(carritoInfo);
@@ -43,3 +59,5 @@ let cerrarAlert = document.querySelector('.cerrar');
 carritoInfo.addEventListener('click', () => {
 	carritoInfo.style.display = 'none';
 });
+
+
